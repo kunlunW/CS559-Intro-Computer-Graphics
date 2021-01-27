@@ -1,0 +1,35 @@
+<!-- here is a big, empty SVG! make it into something interesting! -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="600px" width="600px">
+    <!-- you can delete this big rectangle - it's just a placeholder -->
+    
+  <!-- Some graphical objects to use -->
+  <defs>
+    <circle id="myCircle" cx="50" cy="50" r="40" style="fill:gold; stroke:red; stroke-width:5px;" fill-opacity="0.5"/>
+    <rect id="myRect" width="100" height="100" x="10" y="10" style="fill:pink; stroke:green; stroke-width:10px;" transform="rotate(45)" fill-opacity="0.5"/>
+
+
+    <g id="myShape">
+    <use xlink:href="#myRect" transform="translate( 0, 0)" />
+    <use xlink:href="#myRect" transform="translate( 100, 0)"/>
+     <use xlink:href="#myRect" transform="translate( 200,0)"/>
+    <use xlink:href="#myRect" transform="translate( 300,0)"/>
+    <use xlink:href="#myRect" transform="translate( 400,0)"/>
+    </g>
+
+    <g id = "myCircles">
+        <use xlink:href="#myCircle" transform="translate( 0, 0)" />
+        <use xlink:href="#myCircle" transform="translate( 100, 0)" />
+        <use xlink:href="#myCircle" transform="translate( 200, 0)" />
+        <use xlink:href="#myCircle" transform="translate( 300, 0)" />
+        <use xlink:href="#myCircle" transform="translate( 400, 0)" />
+    </g>
+
+
+</defs>
+
+<use xlink:href="#myShape" x="100" y="45" id="one"/>
+<use xlink:href="#myCircles" x="50" y="200" id="two"/>
+<use xlink:href="#myShape" x="100" y="285" id="three"/>
+<use xlink:href="#myCircles" x="50" y="440" id="four"/>
+
+</svg>
