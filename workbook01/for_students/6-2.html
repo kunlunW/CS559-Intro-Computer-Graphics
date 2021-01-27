@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <p>Put 2 buttons and a slider here</p>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <input type="range" min="0" max="100" id="sliderExample">
+</body>
+
+<script type="module">
+    /** @type{HTMLInputElement} */ let slr = (/** @type{HTMLInputElement} */ document.getElementById("sliderExample"));
+    /** @type{HTMLInputElement} */ let startControl = (/** @type{HTMLInputElement} */ document.getElementById("start"));
+    /** @type{HTMLInputElement} */ let stopControl = (/** @type{HTMLInputElement} */ document.getElementById("stop"));
+
+    let speed = 0;
+
+startControl.onclick = function() {speed = 2};
+
+stopControl.onclick = function() {speed = 0};
+
+    function controlFunction() {
+        
+        let newValue = (Number(slr.value)+speed) % 100;
+        if (newValue<0) newValue=100;
+        slr.value = newValue.toString();
+        window.requestAnimationFrame(controlFunction);
+    }
+
+    
+
+    controlFunction();
+</script>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<p>
+    <span id="span"> He is some text to make throb.</span>
+</p>
+
+
+<script type="module">
+    function throbFunction(colorIdentifier) {
+        // setting up the basic colors and necessary parameters 
+        let red = 100;
+        let blue = 100;
+        let green = 100;
+        let speed = 1000;
+        let blink = document.getElementById(colorIdentifier);
+        let lastBlinkTime = 0;
+
+        function hexColorConverter(color) {
+    if (color < 256) {
+    return Math.abs(color).toString(16);
+    }
+    return 0;
+    }
+
+        function colortoHexConverter(red, green, blue) {
+            return "#" + hexColorConverter(red) + hexColorConverter(green) + hexColorConverter(blue);
+        }
+
+        var limitControl = 0;
+
+        function blinker() {
+            let time = performance.now();
+
+            // 255 is the limit for every color 
+            // if we haven't reached a color limit yet, we set the limitControl to 0
+            if(limitControl == 0){
+                // if we eventually reached 255, we set color control to 1, so we will 
+                // begin decrement the blue color 
+                if(blue >= 255){
+                    limitControl = 1;
+                }
+
+                if ((time-lastBlinkTime) > speed) {
+                    lastBlinkTime = time;
+                    blink.style.backgroundColor = colortoHexConverter(red, green, blue);
+                    blue = blue + 15;
+                    
+                }
+            }
+
+            // if we have reached a color limit, arbituarily set to 10, we need to 
+            // decrement blue color
+            if(limitControl == 1){
+                // if we reached the color limit 
+                if(blue <= 10){
+                    limitControl = 0;
+                }
+                if ((time-lastBlinkTime) > speed) {
+                    lastBlinkTime = time;
+                    blink.style.backgroundColor = colortoHexConverter(red, green, blue);
+                    blue = blue - 15;
+                }
+            }
+            window.requestAnimationFrame(blinker);
+        }
+        blinker();
+    }
+
+    window.onload = function() {
+        throbFunction("span");
+
+    }
+</script>
+
+</body>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div>
+        <input id="box1" type="range" min="0" max="100" step="1"><br />
+        <input id="box2" type="range" min="0" max="100" step="1"><br />
+        <input id="box3" type="range" min="-100" max="100" step="1"><br />
+    </div>
+    
+</body>
+
+<ul>
+    <li id="box1-li1">Slider 1: </li>
+    <li id="box1-li2">Slider 2: </li>
+    <li id="box1-li3">Slider 3: </li>
+</ul>
+
+
+<script type="module">
+    window.onload = function () {
+    
+    /** @type{HTMLInputElement} */ let slider61 = (/** @type{HTMLInputElement} */ document.getElementById("box1"));
+    /** @type{HTMLInputElement} */ let slider62 = (/** @type{HTMLInputElement} */ document.getElementById("box2"));
+    /** @type{HTMLInputElement} */ let slider63 = (/** @type{HTMLInputElement} */ document.getElementById("box3"));
+
+    slider61.oninput = function() {
+        slider63.value = slider62.value - slider61.value;
+        document.getElementById("box1-li1").innerHTML = `Slider 1 - ${slider61.value}`;
+        document.getElementById("box1-li3").innerHTML = `Slider 3 - ${slider63.value}`;
+    };
+    slider62.oninput = function() {
+        slider63.value = slider62.value - slider61.value;
+        document.getElementById("box1-li2").innerHTML = `Slider 2 - ${slider62.value}`;
+        document.getElementById("box1-li3").innerHTML = `Slider 3 - ${slider63.value}`;
+    };
+    slider63.oninput = function() {
+        slider62.value = slider63.value + slider61.value;
+        slider61.value = slider62.value - slider63.value;
+        document.getElementById("box1-li1").innerHTML = `Slider 1 - ${slider61.value}`;
+        document.getElementById("box1-li2").innerHTML = `Slider 2 - ${slider62.value}`;
+        document.getElementById("box1-li3").innerHTML = `Slider 3 - ${slider63.value}`;
+    };
+}
+
+</script>
+</html>
